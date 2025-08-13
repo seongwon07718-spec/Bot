@@ -2,16 +2,19 @@ import os
 import discord
 from discord.ext import commands
 
-TOKEN = os.getenv("BOT_TOKEN")  # 봇 토큰
-WELCOME_CHANNEL_ID = 1401230000249766008  # 환영 채널 ID로 변경
+TOKEN = os.getenv("BOT_TOKEN")
+WELCOME_CHANNEL_ID = 1401230000249766008  # 환영 채널 ID
 
+# Intents 설정
 intents = discord.Intents.default()
 intents.members = True
+intents.message_content = True
+
 bot = commands.Bot(command_prefix="!", intents=intents)
 
 @bot.event
 async def on_ready():
-    print(f"✅ 봇 로그인: {bot.user}")
+    print(f"✅ 봇 로그인 성공: {bot.user}")
 
 @bot.event
 async def on_member_join(member):
@@ -27,5 +30,8 @@ async def on_member_join(member):
         )
         embed.set_footer(text="서버에 오신 걸 환영합니다!")
         await channel.send(embed=embed)
+
+if not TOKEN:
+    raise ValueError("❌ BOT_TOKEN 환경변수가 설정되지 않았습니다!")
 
 bot.run(TOKEN)
