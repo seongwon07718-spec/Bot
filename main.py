@@ -19,12 +19,11 @@ async def on_member_join(member):
     if channel:
         embed = discord.Embed(
             description=(
-                f"✨ {member.mention} 환영합니다!\n\n"
-                f"**<#1398259715192127569>
-인증 하시면 활동 가능합니다.\n"
-                f"<#1398260667768635392> 서버 이용 전 꼭 필독해주세요.**"
+                f"{member.mention} 환영합니다!\n\n"
+                f"**<#1398259715192127569> 인증 하시면 활동 가능합니다.**\n"
+                f"**<#1398260667768635392> 서버 이용 전 꼭 필독해주세요.**"
             ),
-            color=discord.Color(0x000000)  # Discord 기본 보라색
+            color=discord.Color(0x000000)
         )
         embed.set_footer(text="서버에 오신 걸 환영합니다!")
         await channel.send(embed=embed)
